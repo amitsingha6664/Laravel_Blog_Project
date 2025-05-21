@@ -18,7 +18,7 @@ Route::get('contact', [blogController::class, 'contact'])->name('contact');
 Route::get('dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
 Route::get('CreatePostView', [AdminController::class, 'CreatePostView'])->name('CreatePostView');
 Route::post('CreatePost', [AdminController::class, 'CreatePost'])->name('CreatePost');
-Route::get('viewPost', [AdminController::class, 'viewpost'])->name('viewpost');
+Route::get('ViewPost/{slug}', [AdminController::class, 'ViewPost'])->name('ViewPost');
 Route::get('editPost', [AdminController::class, 'editpsot'])->name('editpsot');
 Route::get('deletePost', [AdminController::class, 'deletepost'])->name('deletepost');
 Route::get('SuccessView', [AdminController::class, 'SuccessView'])->name('SuccessView');

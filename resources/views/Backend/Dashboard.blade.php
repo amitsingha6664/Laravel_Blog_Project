@@ -43,7 +43,7 @@
           <td>{{$post->author_id}}</td>
           <td>{{$post->created_at}}</td>
           <td>
-            <a class="btn btn-sm btn-primary" href="{{ route('viewpost') }}">View</a>
+            <a class="btn btn-sm btn-primary" href="{{ route('ViewPost', $post->slug) }}">View</a>
             <a class="btn btn-sm btn-success" href="{{ route('editpsot') }}">Edit</a>
             <a class="btn btn-sm btn-danger" href="{{ route('deletepost') }}">Delete</a>
           </td>

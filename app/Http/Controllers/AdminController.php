@@ -10,7 +10,7 @@ use App\Models\Category;
 class AdminController extends Controller
 {
     public function dashboard(){
-        $all_posts = Post::select('id', 'post_title', 'author_id', 'created_at')->get();
+        $all_posts = Post::select('id', 'slug', 'post_title', 'author_id', 'created_at')->get();
         $all_post_count = $all_posts->count();
         $all_user_count = User::count();
         $title = 'Admin Dashboard Page';
@@ -38,8 +38,12 @@ class AdminController extends Controller
     }
 
 
-    public function viewpost(){
-        return view('Backend.ViewPost', ['title' => 'Admin View Page']);
+    public function ViewPost($slug){
+        $post = Post::where('slug', $slug)->first();
+        $title = $post->post_title;
+        $category_name = Category::where('id', $post->post_category)->first();
+        $category_name = $category_name->category_name;
+        return view('Backend.ViewPost', compact('title', 'post', 'category_name'));
     }
 
     public function editpsot(){

@@ -10,19 +10,11 @@
             <div class="card shadow-sm">
                 <img src="{{ asset('Assets/img/one.jpg') }}" class="card-img-top img-fluid" alt="Post Image">
                 <div class="card-body">
-                    <h2 class="card-title">Sample Blog Post Title</h2>
-                    <p class="text-muted">
-                        Posted by <strong>Admin</strong> on May 9, 2025 in 
-                        <span class="badge bg-info text-dark">Tech</span>
+                    <h2 class="card-title">{{ $post->post_title }}</h2>
+                    <p class="text-muted">Posted by <strong>{{ $post->author_id }}</strong> Pablish Date: {{ $post->created_at }}<span class="badge bg-info text-dark">{{ $category_name }}</span>
                     </p>
                     <hr>
-                    <p class="card-text">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero.
-                        Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum.
-                    </p>
-                    <p class="card-text">
-                        Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla.
-                    </p>
+                    <p class="card-text">{{ $post->post_content}}</p>
                     <div class="mt-4 d-flex flex-wrap gap-2">
                         <a href="{{ route('editpsot') }}" class="btn btn-primary">Edit Post</a>
                         <a href="{{ route('deletepost') }}" class="btn btn-danger">Delete Post</a>
