@@ -1,0 +1,53 @@
+/* Hero Section */
+.hero {
+  background: #f8f9fa;
+  padding: 60px 0;
+  text-align: center;
+}
+
+/* Blog Card */
+.blog-card img {
+  height: 200px;
+  object-fit: cover;
+}
+
+/* Shared Header Style for Contact and About */
+.contact-header,
+.about-header {
+  background-color: #f8f9fa;
+  padding: 60px 0;
+  text-align: center;
+}
+
+/* Contact Page */
+.contact-info h5 {
+  margin-bottom: 10px;
+}
+.map-placeholder {
+  background: #ddd;
+  height: 250px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #555;
+}
+
+/* About Page */
+.team-member img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+/* Article Page */
+.article-header img {
+  width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+.article-body {
+  margin-top: 30px;
+}

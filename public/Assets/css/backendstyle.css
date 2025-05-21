@@ -1,0 +1,67 @@
+    body {
+      margin: 0;
+      padding-top: 56px;
+    }
+    .sidebar {
+      position: fixed;
+      top: 56px;
+      left: 0;
+      width: 220px;
+      height: 100%;
+      background-color: #343a40;
+      padding-top: 1rem;
+    }
+    .sidebar a {
+      color: #ffffff;
+      padding: 10px 20px;
+      display: block;
+      text-decoration: none;
+    }
+    .sidebar a:hover {
+      background-color: #495057;
+    }
+    .content {
+      margin-left: 220px;
+      padding: 20px;
+    }
+    @media (max-width: 767.98px) {
+      .sidebar {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        z-index: 1040;
+      }
+      .sidebar.show {
+        transform: translateX(0);
+      }
+      .content {
+        margin-left: 0;
+      }
+    }
+
+    .sidebar .dropdown-menu {
+      background-color: #343a40; /* Dark background */
+      border: none;
+    }
+    .sidebar .dropdown-item {
+      color: #ffffff;
+    }
+    .sidebar .dropdown-item:hover {
+      background-color: #495057;
+    }
+
+    .profile-card {
+      max-width: 700px;
+      margin: auto;
+    }
+
+    .success-box {
+      text-align: center;
+      padding: 40px;
+      border-radius: 16px;
+      background: #fff;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+    .success-icon {
+      font-size: 60px;
+      color: #28a745;
+    }
