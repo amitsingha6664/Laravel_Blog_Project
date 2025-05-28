@@ -19,8 +19,9 @@ Route::get('dashboard', [AdminController::class, 'dashboard'])->name('dashboard'
 Route::get('CreatePostView', [AdminController::class, 'CreatePostView'])->name('CreatePostView');
 Route::post('CreatePost', [AdminController::class, 'CreatePost'])->name('CreatePost');
 Route::get('ViewPost/{slug}', [AdminController::class, 'ViewPost'])->name('ViewPost');
-Route::get('editPost', [AdminController::class, 'editpsot'])->name('editpsot');
-Route::get('deletePost', [AdminController::class, 'deletepost'])->name('deletepost');
+Route::get('EditPost/{slug}', [AdminController::class, 'EditPost'])->name('EditPost');
+Route::post('EditUpdate', [AdminController::class, 'EditUpdate'])->name('EditUpdate');
+Route::get('DeletePost/{post_id}', [AdminController::class, 'DeletePost'])->name('DeletePost');
 Route::get('SuccessView', [AdminController::class, 'SuccessView'])->name('SuccessView');
 
 // Backend Settings Routes

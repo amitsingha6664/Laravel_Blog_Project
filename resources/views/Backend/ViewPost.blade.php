@@ -16,8 +16,8 @@
                     <hr>
                     <p class="card-text">{{ $post->post_content}}</p>
                     <div class="mt-4 d-flex flex-wrap gap-2">
-                        <a href="{{ route('editpsot') }}" class="btn btn-primary">Edit Post</a>
-                        <a href="{{ route('deletepost') }}" class="btn btn-danger">Delete Post</a>
+                        <a href="{{ route('EditPost', $post->slug) }}" class="btn btn-primary">Edit Post</a>
+                        <a href="{{ route('DeletePost', $post->slug) }}" class="btn btn-danger">Delete Post</a>
                     </div>
                 </div>
             </div>

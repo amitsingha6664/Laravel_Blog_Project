@@ -37,7 +37,6 @@ class AdminController extends Controller
         }
     }
 
-
     public function ViewPost($slug){
         $post = Post::where('slug', $slug)->first();
         $title = $post->post_title;
@@ -46,12 +45,45 @@ class AdminController extends Controller
         return view('Backend.ViewPost', compact('title', 'post', 'category_name'));
     }
 
-    public function editpsot(){
-        return view('Backend.EditPost', ['title' => 'Admin Edit Page']);
+    public function EditPost($slug){
+        $post = Post::where('slug', $slug)->first();
+        $category_name = Category::where('id', $post->post_category)->first();
+        $all_category = Category::select('id', 'category_name')->get();
+        $category_name = $category_name->category_name;
+        $title = $post->post_title;
+        return view('Backend.EditPost', compact('post', 'all_category', 'category_name', 'title'));
     }
 
-    public function deletepost(){
-        return view('Backend.DeletePost', ['title' => 'Admin Delete Page']);
+    public function EditUpdate(Request $request){
+        $post_id = Post::where('slug', $request->slug)->first();
+        $post = Post::find($post_id->id);
+            if (!$post) {
+            return 'Post Not Found';
+        }
+        $post->post_title = $request->title;
+        $post->slug = $request->slug;
+        $post->post_category = $request->category;
+        $post->post_content = $request->content;
+        if($post->update()){
+            return redirect()->route('SuccessView');
+        }
+        else{
+            return 'Post Not Published';
+        }
+    }
+
+    public function DeletePost($post_id){
+        $post = Post::find($post_id);
+            if(!$post){
+                return 'Post Not Found';
+            }
+            if($post->delete()){
+                return redirect()->route('SuccessView');
+            }
+            else{
+                return 'Post Not Deleted';
+            }
+        // return view('Backend.DeletePost', ['title' => 'Admin Delete Page']);
     }
 
     public function SuccessView(){

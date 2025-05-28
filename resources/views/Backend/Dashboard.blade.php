@@ -44,8 +44,8 @@
           <td>{{$post->created_at}}</td>
           <td>
             <a class="btn btn-sm btn-primary" href="{{ route('ViewPost', $post->slug) }}">View</a>
-            <a class="btn btn-sm btn-success" href="{{ route('editpsot') }}">Edit</a>
-            <a class="btn btn-sm btn-danger" href="{{ route('deletepost') }}">Delete</a>
+            <a class="btn btn-sm btn-success" href="{{ route('EditPost', $post->slug) }}">Edit</a>
+            <a class="btn btn-sm btn-danger" href="{{ route('DeletePost', $post->id) }}">Delete</a>
           </td>
         </tr>
         @endforeach
