@@ -6,7 +6,7 @@
     <div class="success-icon">✔️</div>
     <h2 class="mt-3">Success!</h2>
     <p>Add completed successfully.</p>
-    <a href="{{ route('dashboard')}}" class="btn btn-success mt-3">Go Home</a>
+    <a href="{{ route('Dashboard')}}" class="btn btn-success mt-3">Go Home</a>
   </div>
 
 @endsection

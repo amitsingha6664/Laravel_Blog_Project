@@ -1,67 +1,165 @@
-    body {
-      margin: 0;
-      padding-top: 56px;
-    }
-    .sidebar {
-      position: fixed;
-      top: 56px;
-      left: 0;
-      width: 220px;
-      height: 100%;
-      background-color: #343a40;
-      padding-top: 1rem;
-    }
-    .sidebar a {
-      color: #ffffff;
-      padding: 10px 20px;
-      display: block;
-      text-decoration: none;
-    }
-    .sidebar a:hover {
-      background-color: #495057;
-    }
-    .content {
-      margin-left: 220px;
-      padding: 20px;
-    }
-    @media (max-width: 767.98px) {
-      .sidebar {
-        transform: translateX(-100%);
-        transition: transform 0.3s ease;
-        z-index: 1040;
-      }
-      .sidebar.show {
-        transform: translateX(0);
-      }
-      .content {
-        margin-left: 0;
-      }
-    }
+body {
+  margin: 0;
+  padding-top: 56px;
+  min-height: 100vh;
+  background-color: #f8f9fa;
+}
 
-    .sidebar .dropdown-menu {
-      background-color: #343a40; /* Dark background */
-      border: none;
-    }
-    .sidebar .dropdown-item {
-      color: #ffffff;
-    }
-    .sidebar .dropdown-item:hover {
-      background-color: #495057;
-    }
+/* Navbar with Gradient */
+.navbar {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
 
-    .profile-card {
-      max-width: 700px;
-      margin: auto;
-    }
+/* Sidebar with Gradient */
+.sidebar {
+  position: fixed;
+  top: 56px;
+  left: 0;
+  width: 60px;
+  height: calc(100vh - 56px);
+  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+  padding-top: 1rem;
+  overflow-x: hidden;
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
 
-    .success-box {
-      text-align: center;
-      padding: 40px;
-      border-radius: 16px;
-      background: #fff;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-    }
-    .success-icon {
-      font-size: 60px;
-      color: #28a745;
-    }
+.sidebar:hover,
+.sidebar.expanded {
+  width: 220px;
+}
+
+.sidebar a {
+  color: rgba(255, 255, 255, 0.9);
+  padding: 12px 15px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  transition: all 0.3s;
+}
+
+.sidebar a:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  transform: translateX(5px);
+}
+
+.sidebar a i {
+  margin-right: 15px;
+  font-size: 1.2rem;
+  min-width: 20px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.sidebar .nav-text {
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.sidebar:hover .nav-text,
+.sidebar.expanded .nav-text {
+  opacity: 1;
+}
+
+/* Dropdown with Gradient */
+.sidebar .dropdown-menu {
+  background: linear-gradient(135deg, #1a2980 0%, #26d0ce 100%);
+  border: none;
+  margin-left: 0;
+  width: 100%;
+  position: static !important;
+  transform: none !important;
+  padding: 0;
+}
+
+.sidebar .dropdown-toggle::after {
+  margin-left: auto;
+  transition: transform 0.3s;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.sidebar .dropdown.show .dropdown-toggle {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.sidebar .dropdown.show .dropdown-toggle::after {
+  transform: rotate(-180deg);
+  color: white;
+}
+
+.sidebar .dropdown-item {
+  color: rgba(255, 255, 255, 0.9);
+  padding: 10px 15px 10px 45px;
+  transition: all 0.3s;
+  border-left: 3px solid transparent;
+}
+
+.sidebar .dropdown-item:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  border-left: 3px solid white;
+  padding-left: 42px;
+}
+
+/* Content area */
+.content {
+  margin-left: 60px;
+  padding: 20px;
+  transition: margin-left 0.3s;
+}
+
+.sidebar.expanded + .content {
+  margin-left: 220px;
+}
+
+/* Mobile styles */
+@media (max-width: 767.98px) {
+  .sidebar {
+    transform: translateX(-100%);
+    width: 220px;
+  }
+  
+  .sidebar.show {
+    transform: translateX(0);
+  }
+  
+  .content {
+    margin-left: 0;
+  }
+  
+  .sidebar .nav-text {
+    opacity: 1;
+  }
+}
+
+/* Active link style */
+.sidebar a.active {
+  background: rgba(255, 255, 255, 0.25);
+  font-weight: bold;
+  color: white;
+  border-left: 3px solid white;
+}
+
+.sidebar a.active i {
+  color: white;
+}
+
+.profile-card {
+  max-width: 700px;
+  margin: auto;
+}
+
+.success-box {
+  text-align: center;
+  padding: 40px;
+  border-radius: 16px;
+  background: linear-gradient(to right, #bfffdf, #00FF7F);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+.success-icon {
+  font-size: 60px;
+  color: #28a745;
+}
