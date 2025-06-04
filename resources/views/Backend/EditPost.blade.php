@@ -2,6 +2,17 @@
 
 @Section('Content')
 
+@if(session('error'))
+<div id="customAlert" class="custom-toast position-fixed top-0 end-0 m-4" style="z-index: 1050;">
+    <div class="toast-body d-flex align-items-center shadow-lg rounded-3 px-4 py-3" style="background: rgba(202, 16, 16, 0.85); color: white; backdrop-filter: blur(10px); border-left: 5px solid #fff;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="white" class="bi bi-check-circle-fill me-2" viewBox="0 0 16 16">
+          <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM6.97 10.03a.75.75 0 0 0 1.08.022l3.992-4.99a.75.75 0 1 0-1.144-.976L7.525 8.37 5.383 6.234a.75.75 0 1 0-1.06 1.06l2.647 2.736z"/>
+        </svg>
+        <span>{{ session('error') }}</span>
+    </div>
+</div>
+@endif
+
 @if(session('success'))
 <div id="customAlert" class="custom-toast position-fixed top-0 end-0 m-4" style="z-index: 1050;">
     <div class="toast-body d-flex align-items-center shadow-lg rounded-3 px-4 py-3" style="background: rgba(40, 167, 69, 0.85); color: white; backdrop-filter: blur(10px); border-left: 5px solid #fff;">
@@ -22,17 +33,29 @@
                   <form action="{{ route('Edit-Update') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
-                      <label for="editTitle" class="form-label">Post Title</label>
+                      @if ($errors->has('title'))
+                        <label for="postTitle" class="form-label text-danger">The field is required and under 255 characters.</label>
+                      @else
+                        <label for="postTitle" class="form-label">Post Title</label>
+                      @endif
                       <input type="text" class="form-control" id="editTitle" name="title" value="{{ $post->post_title }}">
                     </div>
 
                     <div class="mb-3">
-                      <label for="slug" class="form-label">Slug</label>
+                      @if ($errors->has('slug'))
+                          <label for="slug" class="form-label text-danger">The field is required or Unique and under 255 characters.</label>
+                      @else
+                          <label for="slug" class="form-label">Slug</label>
+                      @endif
                       <input type="text" class="form-control" id="slug" name="slug" value="{{ $post->slug }}">
                     </div>
 
                     <div class="mb-3">
-                      <label for="editCategory" class="form-label">Category</label>
+                      @if ($errors->has('category'))
+                        <label for="postCategory" class="form-label text-danger">You must select one option.</label>
+                      @else
+                        <label for="postCategory" class="form-label">Category</label>
+                      @endif
                       <select class="form-select" id="editCategory" name="category">
                         <option value="{{$post->post_category}}" selected>{{$category_name}}</option>
                         @foreach($all_category as $category)
@@ -47,7 +70,11 @@
                     </div>
 
                     <div class="mb-3">
-                      <label for="editContent" class="form-label">Content</label>
+                      @if ($errors->has('content'))
+                        <label for="postContent" class="form-label text-danger">The field is required.</label>
+                      @else
+                        <label for="postContent" class="form-label">Content</label>
+                      @endif
                       <textarea class="form-control" id="editContent" name="content" rows="6">{{ $post->post_content }}</textarea>
                     </div>
 
