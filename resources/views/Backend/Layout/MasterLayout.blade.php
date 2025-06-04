@@ -44,6 +44,8 @@
       <ul class="dropdown-menu" aria-labelledby="settingsDropdown">
         <li><a class="dropdown-item {{ request()->routeIs('General-Settings-View') ? 'active' : '' }}" 
                href="{{ route('General-Settings-View') }}">General Settings</a></li>
+        <li><a class="dropdown-item {{ request()->routeIs('Users-List-View') ? 'active' : '' }}" 
+               href="{{ route('Users-List-View') }}">Users List</a></li>
         <li><a class="dropdown-item {{ request()->routeIs('Profile-Settings-View') ? 'active' : '' }}" 
                href="{{ route('Profile-Settings-View') }}">Profile Settings</a></li>
         <li><a class="dropdown-item {{ request()->routeIs('Add-Category-View') ? 'active' : '' }}" 

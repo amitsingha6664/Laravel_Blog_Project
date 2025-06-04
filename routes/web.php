@@ -27,6 +27,10 @@ Route::get('SuccessView', [AdminController::class, 'Success_View'])->name('Succe
 // Backend Settings Routes
 
 Route::get('GeneralSettingsView', [SettingController::class, 'General_Settings_View'])->name('General-Settings-View');
+Route::get('UsersListView', [SettingController::class, 'Users_List_View'])->name('Users-List-View');
+Route::get('AddNewUser', [SettingController::class, 'Add_New_User'])->name('Add-New-User');
+Route::get('DeleteUser/{user_id}', [SettingController::class, 'Delete_User'])->name('Delete-User');
+Route::get('UserProfileView/{user_id}', [SettingController::class, 'User_Profile_View'])->name('User-Profile-View');
 Route::get('ProfileSettingsView', [SettingController::class, 'Profile_Settings_View'])->name('Profile-Settings-View');
 Route::get('EditProfileView', [SettingController::class, 'Edit_Profile_View'])->name('Edit-Profile-View');
 Route::get('AddCategoryView', [SettingController::class, 'Add_Category_View'])->name('Add-Category-View');

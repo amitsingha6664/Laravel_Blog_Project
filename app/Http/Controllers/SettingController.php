@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
 use App\Models\Post;
 use App\Models\Category;
 
@@ -10,6 +11,41 @@ class SettingController extends Controller
 {
     public function General_Settings_View(){
         return view('Backend.GeneralSettings', ['title' => 'General Settings']);
+    }
+
+    public function Users_List_View(){
+        $user_count = User::count();
+        $all_user = User::select('id', 'name', 'role', 'created_at')->get();
+        $title = 'Users List';
+        return view('Backend.UsersListView', compact('all_user', 'user_count', 'title'));
+    }
+
+    public function Add_New_User(){
+        $title = 'Add New User Create';
+        return view('Backend.AddNewUser', compact('title'));
+    }
+
+    public function User_Profile_View($user_id){
+        $user = User::where('id', $user_id)->first();
+            if(!$user){
+                return 'User Not Found';
+            }
+        $user = User::select('name', 'email', 'role')->first();
+        $title = 'Profile View';
+        return view('Backend.UserProfileView', compact('user', 'title'));
+    }
+
+    public function Delete_User($user_id){
+        $user = User::find($user_id);
+        if(!$user){
+            return 'User Not Found';
+        }
+        if($user->delete()){
+            return redirect()->back();
+        }
+        else{
+            return redirect()->back()->with('User Delete Failed');
+        }
     }
 
     public function Profile_Settings_View(){
