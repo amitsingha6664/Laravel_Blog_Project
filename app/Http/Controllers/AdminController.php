@@ -26,7 +26,6 @@ class AdminController extends Controller
     }
 
     public function Create_Post(Request $request){
-
         $validator = Validator::make($request->all(), [
             'title' => 'required|string|max:255',
             'slug' => 'required|string|max:255|unique:posts,slug',
@@ -36,8 +35,9 @@ class AdminController extends Controller
 
         if ($validator->fails()) {
             return redirect()->back()
-            ->withErrors($validator)
-            ->withInput();
+                             ->withErrors($validator)
+                             ->withInput()
+                             ->with('error', "There's something wrong with the way you're creating your post.!");
         }
 
         if ($validator->passes()) {
@@ -48,7 +48,8 @@ class AdminController extends Controller
             $post->post_content = $request->content;
             $post->author_id = 1;
             if($post->save()){
-                return redirect()->back()->with('success', 'Post Created Successfully');
+                return redirect()->back()
+                                 ->with('success', 'Post Created Successfully');
             } else {
                 return 'Post Not Published';
             }
@@ -78,16 +79,32 @@ class AdminController extends Controller
             if (!$post) {
             return 'Post Not Found';
         }
-        $post->post_title = $request->title;
-        $post->slug = $request->slug;
-        $post->post_category = $request->category;
-        $post->post_content = $request->content;
-        if($post->update()){
-            return redirect()->back()->with('success', 'Post Edit Successfully');
+        $validator = Validator::make($request->all(), [
+            'title' => 'required|string|max:255',
+            'slug' => 'required|string|max:255',
+            'category' => 'required|string|max:255',
+            'content' => 'required|string',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                             ->withErrors($validator)
+                             ->withInput()
+                             ->with('error', "There's something wrong with the way you're creating your post.!");
         }
-        else{
-            return 'Post Not Published';
-        }
+        if($validator->passes()){
+            $post->post_title = $request->title;
+            $post->slug = $request->slug;
+            $post->post_category = $request->category;
+            $post->post_content = $request->content;
+            if($post->update()){
+                return redirect()->back()
+                                 ->with('success', 'Post Edit Successfully');
+            }
+            else{
+                return redirect()->back()->with('error', 'Post Not Published');
+            }
+            }
     }
 
     public function Delete_Post($post_id){
