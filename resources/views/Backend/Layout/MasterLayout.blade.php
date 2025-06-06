@@ -61,6 +61,28 @@
 
   <!-- Content -->
   <div class="content">
+    @if(session('success'))
+      <div id="customAlert" class="custom-toast position-fixed top-0 end-0 m-4" style="z-index: 1050;">
+          <div class="toast-body d-flex align-items-center shadow-lg rounded-3 px-4 py-3" style="background: #00563B; color: white; backdrop-filter: blur(10px); border-left: 5px solid #fff;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="white" class="bi bi-check-circle-fill me-2" viewBox="0 0 16 16">
+                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM6.97 10.03a.75.75 0 0 0 1.08.022l3.992-4.99a.75.75 0 1 0-1.144-.976L7.525 8.37 5.383 6.234a.75.75 0 1 0-1.06 1.06l2.647 2.736z"/>
+              </svg>
+              <span>{{ session('success') }}</span>
+          </div>
+      </div>
+    @endif
+
+    @if(session('error'))
+        <div id="customAlert" class="custom-toast position-fixed top-0 end-0 m-4" style="z-index: 1050;">
+            <div class="toast-body d-flex align-items-center shadow-lg rounded-3 px-4 py-3" style="background: rgba(202, 16, 16, 0.85); color: white; backdrop-filter: blur(10px); border-left: 5px solid #fff;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="white" class="bi bi-check-circle-fill me-2" viewBox="0 0 16 16">
+                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM6.97 10.03a.75.75 0 0 0 1.08.022l3.992-4.99a.75.75 0 1 0-1.144-.976L7.525 8.37 5.383 6.234a.75.75 0 1 0-1.06 1.06l2.647 2.736z"/>
+                </svg>
+                <span>{{ session('error') }}</span>
+            </div>
+        </div>
+    @endif
+
     @yield('Content')
   </div>
 

@@ -27,11 +27,27 @@ class AdminController extends Controller
 
     public function Create_Post(Request $request){
         $validator = Validator::make($request->all(), [
-            'title' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|unique:posts,slug',
-            'category' => 'required|string|max:255',
-            'content' => 'required|string',
-        ]);
+    'title' => 'required|string|max:255',
+    'slug' => 'required|string|max:255|unique:posts,slug',
+    'category' => 'required|string|max:255',
+    'content' => 'required|string',
+], [
+    'title.required' => 'Title field is required.',
+    'title.string' => 'Title must be a string.',
+    'title.max' => 'Title may not be greater than 255 characters.',
+
+    'slug.required' => 'Slug field is required.',
+    'slug.string' => 'Slug must be a string.',
+    'slug.max' => 'Slug may not be greater than 255 characters.',
+    'slug.unique' => 'This slug has already been taken.',
+
+    'category.required' => 'Category field is required.',
+    'category.string' => 'Category must be a string.',
+    'category.max' => 'Category may not be greater than 255 characters.',
+
+    'content.required' => 'Content field is required.',
+    'content.string' => 'Content must be a string.',
+]);
 
         if ($validator->fails()) {
             return redirect()->back()
@@ -66,11 +82,10 @@ class AdminController extends Controller
 
     public function Edit_Post($slug){
         $post = Post::where('slug', $slug)->first();
-        $category_name = Category::where('id', $post->post_category)->first();
-        $category_name = $category_name->category_name;
+        $category_data = Category::where('id', $post->post_category)->first();
         $all_category = Category::select('id', 'category_name')->get();
         $title = $post->post_title;
-        return view('Backend.EditPost', compact('post', 'category_name', 'all_category', 'title'));
+        return view('Backend.EditPost', compact('post', 'category_data', 'all_category', 'title'));
     }
 
     public function Edit_Update(Request $request){
@@ -98,7 +113,7 @@ class AdminController extends Controller
             $post->post_category = $request->category;
             $post->post_content = $request->content;
             if($post->update()){
-                return redirect()->back()
+                return redirect()->route('Dashboard')
                                  ->with('success', 'Post Edit Successfully');
             }
             else{
@@ -118,9 +133,5 @@ class AdminController extends Controller
             else{
                 return redirect()->back()->with('error', 'Post Could Not Be Deleted');
             }
-    }
-
-    public function Success_View(){
-        return view('Backend.SuccessView', ['title' => 'Success Message']);
     }
 }

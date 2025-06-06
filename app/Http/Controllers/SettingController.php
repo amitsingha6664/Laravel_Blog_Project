@@ -41,7 +41,7 @@ class SettingController extends Controller
             return 'User Not Found';
         }
         if($user->delete()){
-            return redirect()->back();
+            return redirect()->back()->with('success', 'User Delete Successfuly');
         }
         else{
             return redirect()->back()->with('User Delete Failed');

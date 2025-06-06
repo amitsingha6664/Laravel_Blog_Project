@@ -22,7 +22,6 @@ Route::get('ViewPost/{slug}', [AdminController::class, 'View_Post'])->name('View
 Route::get('EditPost/{slug}', [AdminController::class, 'Edit_Post'])->name('Edit-Post');
 Route::post('EditUpdate', [AdminController::class, 'Edit_Update'])->name('Edit-Update');
 Route::get('DeletePost/{post_id}', [AdminController::class, 'Delete_Post'])->name('Delete-Post');
-Route::get('SuccessView', [AdminController::class, 'Success_View'])->name('Success-View');
 
 // Backend Settings Routes
 
