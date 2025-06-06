@@ -42,7 +42,11 @@
                       </div>
 
                       <div class="mb-3">
-                        <label for="slug" class="form-label">Slug</label>
+                        @if($errors->has('slug'))
+                            <label for="slug" class="form-label text-danger">The field is required and under 255 characters.</label>
+                        @else
+                            <label for="slug" class="form-label">Slug</label>
+                        @endif
                         <input type="text" class="form-control" value="{{ old('slug') }}" id="slug" name="slug">
                       </div>
 
@@ -73,7 +77,7 @@
                         @else
                             <label for="postContent" class="form-label">Content</label>
                         @endif
-                        <textarea type="text" class="form-control" value="{{ old('content') }}" id="postContent" name="content" rows="6"></textarea>
+                        <textarea type="text" class="form-control" id="postContent" name="content" rows="6">{{ old('content') }}</textarea>
                       </div>
 
                       <button type="submit" name="submit" class="btn btn-primary d-flex mx-auto">Publish Post</button>

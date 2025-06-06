@@ -81,6 +81,7 @@ class AdminController extends Controller
         }
         $validator = Validator::make($request->all(), [
             'title' => 'required|string|max:255',
+            'slug' => 'required|string|max:255',
             'category' => 'required|string|max:255',
             'content' => 'required|string',
         ]);
@@ -93,6 +94,7 @@ class AdminController extends Controller
         }
         if($validator->passes()){
             $post->post_title = $request->title;
+            $post->slug = $request->slug;
             $post->post_category = $request->category;
             $post->post_content = $request->content;
             if($post->update()){
@@ -100,7 +102,7 @@ class AdminController extends Controller
                                  ->with('success', 'Post Edit Successfully');
             }
             else{
-                return 'Post Not Published';
+                return redirect()->back()->with('error', 'Post Not Published');
             }
             }
     }
