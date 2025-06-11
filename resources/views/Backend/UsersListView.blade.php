@@ -3,8 +3,21 @@
 @section('Content')
 
 <div class="container p-3">
-  <h1 class="mb-4">Dashboard</h1>
-    <h2 class="mt-4 text-center">Users List ({{ $user_count }})</h2>
+  <div class="row d-flex justify-content-between">
+    <div class="col-12 col-md-6">
+      <h1 class="mb-4">Dashboard</h1>
+    </div>
+    <div class="col-12 col-md-6">
+      <div class="card text-white h-100" style="background-color: #4B0082;">
+        <div class="card-body">
+          <h5 class="card-title">Total Users</h5>
+          <p class="card-text fs-4">{{ $user_count }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <h2 class="mt-4 text-center">Users List</h2>
     <div class="d-flex justify-content-end">
         <a class="btn btn-outline-success" href="{{ route('Add-New-User') }}">
             Add New User

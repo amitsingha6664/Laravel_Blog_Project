@@ -25,6 +25,20 @@ class SettingController extends Controller
         return view('Backend.AddNewUser', compact('title'));
     }
 
+    public function User_Create(Request $request){
+        $user = new User;
+        $user->name = $request->name;
+        $user->role = $request->role;
+        $user->email = $request->email;
+        $user->password = $request->password;
+        if($user->save()){
+            return redirect()->back()->with('success', 'New User Add Successfuly!');
+        }
+        else{
+            redirect()->back()->with('error', 'New User Add Failed');
+        }
+    }
+
     public function User_Profile_View($user_id){
         $user = User::where('id', $user_id)->first();
             if(!$user){
@@ -49,7 +63,8 @@ class SettingController extends Controller
     }
 
     public function Profile_Settings_View(){
-        return view('Backend.ProfileSettings', ['title' => 'Profile Settings']);
+        $title = 'Profile Settings';
+        return view('Backend.ProfileSettings', compact('title', 'all_user'));
     }
 
     public function Edit_Profile_View(){

@@ -43,6 +43,14 @@
             <a class="nav-link text-light {{ request()->routeIs('Contact') ? 'active' : '' }}" href="{{ route('Contact')}}">Contact</a>
           </li>
         </ul>
+
+        <!-- Smart Search Bar -->
+        <form class="d-flex position-relative me-3" action="" method="GET">
+          <div class="input-group">
+            <span class="input-group-text bg-white border-end-0"><i class="fas fa-search text-muted"></i></span>
+            <input type="search" class="form-control border-start-0" name="query" placeholder="Search..." aria-label="Search">
+          </div>
+        </form>
         
         <div class="d-flex">
           <a class="btn btn-login" href="{{ route('Dashboard')}}">Log in</a>

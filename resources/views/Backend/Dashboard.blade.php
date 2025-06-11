@@ -3,7 +3,17 @@
 @section('Content')
 
 <div class="container p-3">
-  <h1 class="mb-4">Dashboard</h1>
+
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="mb-4">Dashboard</h1>
+    <!-- Smart Search Bar -->
+    <form class="d-flex position-relative me-3" action="" method="GET">
+      <div class="input-group">
+        <span class="input-group-text bg-white border-end-0"><i class="fas fa-search text-muted"></i></span>
+        <input type="search" class="form-control border-start-0" name="query" placeholder="Search..." aria-label="Search">
+      </div>
+    </form>
+  </div>
 
   <div class="row g-4">
     <div class="col-12 col-md-6">

@@ -24,7 +24,7 @@
                                  style="object-fit: cover;">
                         </div>
                         <div class="text-center text-md-start">
-                            <h3 class="mb-1 text-dark">John Doe</h3>
+                            <h3 class="mb-1 text-dark">{{$all_user->name}}</h3>
                             <p class="text-muted mb-2">@johndoe</p>
                             <span class="badge bg-success">Active</span>
                         </div>
@@ -36,14 +36,9 @@
                             <h5 class="text-dark fw-bold border-bottom pb-2">Personal Information</h5>
                         </div>
                         
-                        <div class="col-md-6">
-                            <label class="form-label text-muted">First Name</label>
+                        <div class="col-md-12">
+                            <label class="form-label text-muted">Full Name</label>
                             <p class="fw-semibold">John</p>
-                        </div>
-                        
-                        <div class="col-md-6">
-                            <label class="form-label text-muted">Last Name</label>
-                            <p class="fw-semibold">Doe</p>
                         </div>
                         
                         <div class="col-12">

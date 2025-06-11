@@ -28,6 +28,7 @@ Route::get('DeletePost/{post_id}', [AdminController::class, 'Delete_Post'])->nam
 Route::get('GeneralSettingsView', [SettingController::class, 'General_Settings_View'])->name('General-Settings-View');
 Route::get('UsersListView', [SettingController::class, 'Users_List_View'])->name('Users-List-View');
 Route::get('AddNewUser', [SettingController::class, 'Add_New_User'])->name('Add-New-User');
+Route::post('UserCreate', [SettingController::class, 'User_Create'])->name('User-Create');
 Route::get('DeleteUser/{user_id}', [SettingController::class, 'Delete_User'])->name('Delete-User');
 Route::get('UserProfileView/{user_id}', [SettingController::class, 'User_Profile_View'])->name('User-Profile-View');
 Route::get('ProfileSettingsView', [SettingController::class, 'Profile_Settings_View'])->name('Profile-Settings-View');

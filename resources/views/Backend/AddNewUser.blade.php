@@ -8,7 +8,8 @@
         <div class="card shadow-lg rounded-4">
           <div class="card-body">
             <h4 class="text-center mb-4">Create User</h4>
-            <form action="#" method="POST">
+            <form action="{{ route('User-Create') }}" method="POST">
+              @csrf
               <div class="mb-3">
                 <label for="name" class="form-label">Full Name</label>
                 <input type="text" class="form-control" id="name" name="name" placeholder="Enter full name" required>
@@ -26,7 +27,7 @@
                 <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" required>
               </div>
               <div class="d-grid">
-                <button type="submit" class="btn btn-primary">Create User</button>
+                <button type="submit" name="submit" class="btn btn-primary">Create User</button>
               </div>
             </form>
           </div>
